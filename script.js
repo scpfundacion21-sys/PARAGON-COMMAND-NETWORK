@@ -1,86 +1,181 @@
+```javascript
 /* =========================================
-   PARAGON-STRIKE-DIVISION
-   SYSTEM BOOT
+   PARAGON STRIKE DIVISION
+   SISTEMA DE INICIO
 ========================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
 
-    const percentage = document.getElementById("percentage");
-    const progress = document.getElementById("progress");
-    const message = document.getElementById("message");
-    const enterButton = document.getElementById("enterButton");
+/* =========================================
+   ELEMENTOS
+========================================= */
 
-    let value = 0;
+const progress =
+    document.getElementById("progress");
 
-    const bootMessages = [
-        "INITIALIZING COMMAND NETWORK...",
-        "LOADING PARAGON SYSTEMS...",
-        "VERIFYING SECURE CONNECTION...",
-        "LOADING COMMAND DATABASE...",
-        "ESTABLISHING SECURE CHANNEL...",
-        "SYSTEM CHECK COMPLETE...",
-        "COMMAND NETWORK ONLINE."
-    ];
+const percentage =
+    document.getElementById("percentage");
 
-    const boot = setInterval(() => {
+const bootStatus =
+    document.getElementById("bootStatus");
 
-        value++;
+const boot =
+    document.getElementById("boot");
 
-        percentage.textContent = `${value}%`;
-        progress.style.width = `${value}%`;
-
-        if (value < 20) {
-            message.textContent = bootMessages[0];
-        }
-        else if (value < 40) {
-            message.textContent = bootMessages[1];
-        }
-        else if (value < 55) {
-            message.textContent = bootMessages[2];
-        }
-        else if (value < 70) {
-            message.textContent = bootMessages[3];
-        }
-        else if (value < 85) {
-            message.textContent = bootMessages[4];
-        }
-        else if (value < 100) {
-            message.textContent = bootMessages[5];
-        }
-        else {
-
-            clearInterval(boot);
-
-            message.textContent = bootMessages[6];
-
-            setTimeout(() => {
-                enterButton.classList.add("visible");
-            }, 600);
-        }
-
-    }, 35);
+const enterSection =
+    document.getElementById("enterSection");
 
 
-    /* =========================================
-       ENTRAR
-    ========================================== */
+/* =========================================
+   MENSAJES DEL SISTEMA
+========================================= */
 
-    enterButton.addEventListener("click", () => {
+const messages = [
 
-        enterButton.disabled = true;
+    "INITIALIZING SYSTEM",
 
-        message.textContent =
-            "ACCESS GRANTED // ENTERING COMMAND NETWORK...";
+    "LOADING SECURITY PROTOCOLS",
 
-        document.body.style.transition = "opacity 0.8s ease";
-        document.body.style.opacity = "0";
+    "VERIFYING PARAGON DATABASE",
+
+    "ESTABLISHING SECURE CONNECTION",
+
+    "LOADING INTERFACE",
+
+    "SYSTEM READY"
+
+];
+
+
+/* =========================================
+   VARIABLES
+========================================= */
+
+let value = 0;
+
+
+/* =========================================
+   CARGA DEL SISTEMA
+========================================= */
+
+const loading = setInterval(() => {
+
+    value++;
+
+
+    /* Barra */
+
+    progress.style.width =
+        value + "%";
+
+
+    /* Porcentaje */
+
+    percentage.textContent =
+        value + "%";
+
+
+    /* Mensajes */
+
+    if (value < 20) {
+
+        bootStatus.textContent =
+            messages[0];
+
+    }
+
+    else if (value < 40) {
+
+        bootStatus.textContent =
+            messages[1];
+
+    }
+
+    else if (value < 60) {
+
+        bootStatus.textContent =
+            messages[2];
+
+    }
+
+    else if (value < 80) {
+
+        bootStatus.textContent =
+            messages[3];
+
+    }
+
+    else if (value < 100) {
+
+        bootStatus.textContent =
+            messages[4];
+
+    }
+
+    else {
+
+        bootStatus.textContent =
+            messages[5];
+
+    }
+
+
+    /* =====================================
+       SISTEMA COMPLETADO
+    ===================================== */
+
+    if (value >= 100) {
+
+        clearInterval(loading);
+
 
         setTimeout(() => {
 
-            window.location.href = "main.html";
+            /* Ocultar pantalla de boot */
 
-        }, 800);
+            boot.classList.add("hidden");
 
-    });
 
-});
+            /* Mostrar botón */
+
+            setTimeout(() => {
+
+                enterSection.classList.add("show");
+
+            }, 500);
+
+
+        }, 700);
+
+    }
+
+
+}, 35);
+
+
+/* =========================================
+   ENTRAR
+========================================= */
+
+function enterSystem() {
+
+    /* Efecto de transición */
+
+    document.body.style.transition =
+        "opacity 0.7s ease";
+
+
+    document.body.style.opacity =
+        "0";
+
+
+    /* Ir a main.html */
+
+    setTimeout(() => {
+
+        window.location.href =
+            "main.html";
+
+    }, 700);
+
+}
+```
