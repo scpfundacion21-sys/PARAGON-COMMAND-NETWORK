@@ -3,49 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>PARAGON COMMAND NETWORK</title>
-
+    <title>PARAGON-STRIKE-DIVISION</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================================
-         FONDO PRINCIPAL
-    ========================================== -->
-
+    <!-- Fondo -->
     <div class="background"></div>
-    <div class="dark-overlay"></div>
-
-    <!-- Líneas de escaneo -->
+    <div class="overlay"></div>
     <div class="scanlines"></div>
 
-    <!-- =========================================
-         INTERFAZ PRINCIPAL
-    ========================================== -->
+    <!-- Interfaz -->
+    <main class="interface">
 
-    <main class="system">
-
-        <div class="top-line"></div>
-
-        <section class="boot-panel">
-
-            <div class="system-label">
-                PARAGON COMMAND NETWORK
+        <header>
+            <div class="company">
+                PARAGON-STRIKE-DIVISION
             </div>
 
-            <div class="status">
-                SECURE CONNECTION
+            <div class="connection">
+                SECURE CONNECTION // ONLINE
+            </div>
+        </header>
+
+        <section class="center">
+
+            <div class="system-title">
+                COMMAND NETWORK
             </div>
 
-            <div class="status-online">
+            <div class="system-status">
                 SYSTEM INITIALIZING
             </div>
 
-            <div class="loading-container">
+            <div class="loading">
 
-                <div class="loading-header">
+                <div class="loading-info">
                     <span>SYSTEM BOOT</span>
                     <span id="percentage">0%</span>
                 </div>
@@ -56,24 +50,20 @@
 
             </div>
 
-            <div id="boot-message" class="boot-message">
+            <div id="message" class="message">
                 INITIALIZING COMMAND NETWORK...
             </div>
 
-            <!-- =========================================
-                 BOTÓN ENTRAR
-            ========================================== -->
-
-            <button id="enterButton" class="enter-button">
+            <button id="enterButton">
                 ENTRAR
             </button>
 
         </section>
 
-        <div class="bottom-info">
-            <span>PARAGON // COMMAND NETWORK</span>
-            <span>SYSTEM STATUS: <b>ONLINE</b></span>
-        </div>
+        <footer>
+            <span>PSD // COMMAND NETWORK</span>
+            <span>AUTHORIZED ACCESS</span>
+        </footer>
 
     </main>
 
