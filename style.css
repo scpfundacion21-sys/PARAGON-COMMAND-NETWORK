@@ -1,1 +1,374 @@
+/* =========================================
+   PARAGON COMMAND NETWORK
+   MAIN ACCESS SCREEN
+========================================= */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #050607;
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* =========================================
+   FONDO
+========================================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    background-image: url("assets/images/paragon-emblem-4k.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1100px 1100px;
+
+    opacity: 0.28;
+
+    z-index: 0;
+}
+
+/* =========================================
+   CAPA OSCURA
+========================================= */
+
+.dark-overlay {
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(20, 24, 27, 0.25),
+            rgba(3, 5, 6, 0.92)
+        );
+
+    z-index: 1;
+}
+
+/* =========================================
+   SCANLINES
+========================================= */
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.025) 0px,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    pointer-events: none;
+
+    z-index: 10;
+}
+
+/* =========================================
+   SISTEMA
+========================================= */
+
+.system {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5;
+}
+
+/* =========================================
+   LÍNEA SUPERIOR
+========================================= */
+
+.top-line {
+    position: absolute;
+
+    top: 35px;
+    left: 5%;
+
+    width: 90%;
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* =========================================
+   PANEL DE ARRANQUE
+========================================= */
+
+.boot-panel {
+    width: min(760px, 88%);
+    padding: 55px 60px;
+
+    background: rgba(7, 9, 10, 0.78);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.8),
+        inset 0 0 35px rgba(255, 255, 255, 0.025);
+
+    backdrop-filter: blur(5px);
+
+    text-align: center;
+
+    position: relative;
+}
+
+/* Esquinas tecnológicas */
+
+.boot-panel::before,
+.boot-panel::after {
+    content: "";
+
+    position: absolute;
+
+    width: 35px;
+    height: 35px;
+
+    border-color: rgba(255, 255, 255, 0.65);
+    border-style: solid;
+}
+
+.boot-panel::before {
+    top: -1px;
+    left: -1px;
+
+    border-width: 2px 0 0 2px;
+}
+
+.boot-panel::after {
+    right: -1px;
+    bottom: -1px;
+
+    border-width: 0 2px 2px 0;
+}
+
+/* =========================================
+   TÍTULOS
+========================================= */
+
+.system-label {
+    font-size: clamp(24px, 4vw, 42px);
+
+    font-weight: 700;
+
+    letter-spacing: 8px;
+
+    margin-bottom: 18px;
+
+    text-shadow:
+        0 0 12px rgba(255, 255, 255, 0.25);
+}
+
+.status {
+    font-size: 12px;
+
+    letter-spacing: 5px;
+
+    color: #b9bec2;
+
+    margin-bottom: 8px;
+}
+
+.status-online {
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    color: #ffffff;
+
+    margin-bottom: 55px;
+}
+
+/* =========================================
+   CARGA
+========================================= */
+
+.loading-container {
+    width: 100%;
+    max-width: 620px;
+
+    margin: auto;
+}
+
+.loading-header {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    color: #bfc4c7;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 7px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    overflow: hidden;
+}
+
+#progress {
+    width: 0%;
+    height: 100%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 12px rgba(255, 255, 255, 0.65);
+
+    transition: width 0.08s linear;
+}
+
+/* =========================================
+   MENSAJE
+========================================= */
+
+.boot-message {
+    margin-top: 20px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #888f94;
+
+    min-height: 18px;
+}
+
+/* =========================================
+   BOTÓN ENTRAR
+========================================= */
+
+.enter-button {
+    margin-top: 45px;
+
+    padding: 15px 55px;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    letter-spacing: 5px;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(10px);
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.enter-button.visible {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.enter-button:hover {
+    background: #ffffff;
+
+    color: #050607;
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 0 25px rgba(255, 255, 255, 0.25);
+}
+
+/* =========================================
+   INFORMACIÓN INFERIOR
+========================================= */
+
+.bottom-info {
+    position: absolute;
+
+    bottom: 30px;
+    left: 5%;
+
+    width: 90%;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #777d81;
+}
+
+.bottom-info b {
+    color: #ffffff;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .background {
+        background-size: 90vw 90vw;
+    }
+
+    .boot-panel {
+        padding: 40px 25px;
+    }
+
+    .system-label {
+        letter-spacing: 4px;
+    }
+
+    .status-online {
+        margin-bottom: 40px;
+    }
+
+    .bottom-info {
+        font-size: 8px;
+    }
+}
