@@ -1,73 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PARAGON-STRIKE-DIVISION</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PARAGON-STRIKE-DIVISION</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Fondo -->
+  <div id="boot-screen">
+
+    <!-- LOGO REAL COMO FONDO -->
     <div class="background"></div>
-    <div class="overlay"></div>
+
+    <!-- GRID -->
+    <div class="grid"></div>
+
+    <!-- SCANLINES -->
     <div class="scanlines"></div>
 
-    <!-- Interfaz -->
-    <main class="interface">
+    <div class="boot-container">
 
-        <header>
-            <div class="company">
-                PARAGON-STRIKE-DIVISION
+      <div class="system-label">
+        PARAGON // STRIKE DIVISION
+      </div>
+
+      <!-- EMBLEMA ORIGINAL DEL DISEÑO -->
+      <div class="emblem">
+
+        <div class="outer-ring">
+
+          <div class="inner-ring">
+
+            <div class="shield">
+              P
             </div>
 
-            <div class="connection">
-                SECURE CONNECTION // ONLINE
-            </div>
-        </header>
+          </div>
 
-        <section class="center">
+        </div>
 
-            <div class="system-title">
-                COMMAND NETWORK
-            </div>
+      </div>
 
-            <div class="system-status">
-                SYSTEM INITIALIZING
-            </div>
+      <div class="company-name">
+        PARAGON
+        <span>STRIKE DIVISION</span>
+      </div>
 
-            <div class="loading">
+      <div class="status">
+        <span id="statusText">
+          INITIALIZING SYSTEM
+        </span>
+      </div>
 
-                <div class="loading-info">
-                    <span>SYSTEM BOOT</span>
-                    <span id="percentage">0%</span>
-                </div>
+      <div class="progress-area">
 
-                <div class="loading-bar">
-                    <div id="progress"></div>
-                </div>
+        <div class="progress-info">
 
-            </div>
+          <span>
+            SYSTEM BOOT
+          </span>
 
-            <div id="message" class="message">
-                INITIALIZING COMMAND NETWORK...
-            </div>
+          <span id="percent">
+            0%
+          </span>
 
-            <button id="enterButton">
-                ENTRAR
-            </button>
+        </div>
 
-        </section>
+        <div class="progress-bar">
 
-        <footer>
-            <span>PSD // COMMAND NETWORK</span>
-            <span>AUTHORIZED ACCESS</span>
-        </footer>
+          <div id="progress"></div>
 
-    </main>
+        </div>
 
-    <script src="script.js"></script>
+      </div>
+
+      <button id="enterButton" disabled>
+        ENTER SYSTEM
+      </button>
+
+      <div class="security">
+        SECURE CONNECTION // AUTHORIZED PERSONNEL ONLY
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
 
 </body>
+
 </html>
