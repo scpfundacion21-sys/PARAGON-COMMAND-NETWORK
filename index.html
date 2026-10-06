@@ -1,98 +1,1043 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>PARAGON-STRIKE-DIVISION</title>
+<title>PARAGON // STRIKE DIVISION</title>
 
-  <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #050607;
+    color: white;
+    font-family: "Orbitron", sans-serif;
+}
+
+
+/* ================================
+   FONDO
+================================ */
+
+body {
+    position: relative;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.035),
+            transparent 60%
+        ),
+        #050607;
+}
+
+
+/* LOGO DE FONDO */
+
+.background-logo {
+    position: fixed;
+
+    width: min(78vw, 1000px);
+    height: min(78vw, 1000px);
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background-image: url("paragon-emblem-4k.png");
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    opacity: 0.14;
+
+    filter:
+        grayscale(100%)
+        contrast(1.2)
+        brightness(0.65);
+
+    pointer-events: none;
+
+    animation: logoPulse 5s ease-in-out infinite;
+}
+
+
+@keyframes logoPulse {
+
+    0% {
+        opacity: 0.10;
+        transform: translate(-50%, -50%) scale(0.98);
+    }
+
+    50% {
+        opacity: 0.17;
+        transform: translate(-50%, -50%) scale(1.02);
+    }
+
+    100% {
+        opacity: 0.10;
+        transform: translate(-50%, -50%) scale(0.98);
+    }
+
+}
+
+
+/* ================================
+   CUADRÍCULA
+================================ */
+
+.grid {
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    pointer-events: none;
+
+    opacity: 0.45;
+}
+
+
+/* ================================
+   SCANLINES
+================================ */
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.025) 0px,
+            rgba(255,255,255,0.025) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    opacity: 0.25;
+}
+
+
+/* ================================
+   BORDE
+================================ */
+
+.screen-border {
+
+    position: fixed;
+
+    inset: 18px;
+
+    border: 1px solid rgba(255,255,255,0.13);
+
+    pointer-events: none;
+
+    z-index: 40;
+}
+
+
+.screen-border::before,
+.screen-border::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+}
+
+
+.screen-border::before {
+
+    top: -1px;
+    left: -1px;
+
+    border-top: 2px solid rgba(255,255,255,0.45);
+    border-left: 2px solid rgba(255,255,255,0.45);
+}
+
+
+.screen-border::after {
+
+    right: -1px;
+    bottom: -1px;
+
+    border-right: 2px solid rgba(255,255,255,0.45);
+    border-bottom: 2px solid rgba(255,255,255,0.45);
+}
+
+
+/* ================================
+   PANTALLA DE CARGA
+================================ */
+
+.boot {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    background: #050607;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+
+.boot.hidden {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+.boot-top {
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    color: rgba(255,255,255,0.35);
+
+    margin-bottom: 35px;
+}
+
+
+.boot-title {
+
+    font-size: clamp(25px, 5vw, 55px);
+
+    font-weight: 700;
+
+    letter-spacing: 8px;
+
+    margin-bottom: 35px;
+}
+
+
+/* BARRA */
+
+.progress-container {
+
+    width: min(520px, 70vw);
+
+    height: 2px;
+
+    background: rgba(255,255,255,0.08);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.progress {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: white;
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,0.6);
+
+    transition: width 0.1s linear;
+}
+
+
+.progress-info {
+
+    width: min(520px, 70vw);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 12px;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,0.35);
+}
+
+
+/* ================================
+   INTERFAZ
+================================ */
+
+.interface {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 10;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+/* ================================
+   INFORMACIÓN SUPERIOR
+================================ */
+
+.system-label {
+
+    position: absolute;
+
+    top: 48px;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    color: rgba(255,255,255,0.4);
+}
+
+
+.system-label span {
+
+    color: rgba(255,255,255,0.8);
+}
+
+
+/* ================================
+   PARAGON
+================================ */
+
+.brand {
+
+    font-size: clamp(45px, 8vw, 110px);
+
+    font-weight: 800;
+
+    letter-spacing: 14px;
+
+    line-height: 1;
+
+    color: white;
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,0.08),
+        0 0 35px rgba(255,255,255,0.04);
+
+    animation: brandAppear 1.6s ease forwards;
+
+    opacity: 0;
+}
+
+
+@keyframes brandAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(15px);
+
+        letter-spacing: 25px;
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+        letter-spacing: 14px;
+    }
+
+}
+
+
+/* ================================
+   LINEA
+================================ */
+
+.divider {
+
+    width: 260px;
+
+    height: 1px;
+
+    background: rgba(255,255,255,0.35);
+
+    margin: 22px 0;
+
+    position: relative;
+}
+
+
+.divider::before,
+.divider::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: -2px;
+
+    width: 5px;
+    height: 5px;
+
+    background: white;
+
+    transform: rotate(45deg);
+}
+
+
+.divider::before {
+    left: 0;
+}
+
+
+.divider::after {
+    right: 0;
+}
+
+
+/* ================================
+   SUBTÍTULO
+================================ */
+
+.subtitle {
+
+    font-size: clamp(12px, 1.5vw, 18px);
+
+    letter-spacing: 7px;
+
+    color: rgba(255,255,255,0.68);
+
+    font-weight: 500;
+}
+
+
+/* ================================
+   ESTADO
+================================ */
+
+.status {
+
+    margin-top: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    color: rgba(255,255,255,0.4);
+}
+
+
+.status-light {
+
+    width: 6px;
+
+    height: 6px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,0.8);
+
+    animation: statusBlink 1.2s infinite;
+}
+
+
+@keyframes statusBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+
+}
+
+
+/* ================================
+   BOTÓN ENTRAR
+================================ */
+
+.enter-section {
+
+    margin-top: 65px;
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+.enter-section.show {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+}
+
+
+.enter-button {
+
+    position: relative;
+
+    min-width: 220px;
+
+    padding: 17px 35px;
+
+    background: rgba(255,255,255,0.02);
+
+    border: 1px solid rgba(255,255,255,0.35);
+
+    color: white;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 5px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.enter-button:hover {
+
+    background: rgba(255,255,255,0.08);
+
+    border-color: rgba(255,255,255,0.8);
+
+    box-shadow:
+        0 0 25px rgba(255,255,255,0.08);
+
+    transform: translateY(-2px);
+}
+
+
+.enter-button:active {
+
+    transform: translateY(1px);
+}
+
+
+.enter-button::before,
+.enter-button::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+}
+
+
+.enter-button::before {
+
+    left: -1px;
+    top: -1px;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+}
+
+
+.enter-button::after {
+
+    right: -1px;
+    bottom: -1px;
+
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+
+/* ================================
+   INFORMACIÓN INFERIOR
+================================ */
+
+.bottom-left {
+
+    position: absolute;
+
+    bottom: 42px;
+
+    left: 50px;
+
+    text-align: left;
+
+    font-size: 7px;
+
+    line-height: 2;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,0.28);
+}
+
+
+.bottom-right {
+
+    position: absolute;
+
+    bottom: 42px;
+
+    right: 50px;
+
+    text-align: right;
+
+    font-size: 7px;
+
+    line-height: 2;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,0.28);
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 700px) {
+
+    .screen-border {
+        inset: 10px;
+    }
+
+    .system-label {
+
+        top: 30px;
+
+        letter-spacing: 3px;
+
+        font-size: 7px;
+    }
+
+    .brand {
+
+        letter-spacing: 8px;
+    }
+
+    .subtitle {
+
+        letter-spacing: 4px;
+    }
+
+    .bottom-left,
+    .bottom-right {
+
+        bottom: 25px;
+
+        font-size: 6px;
+    }
+
+    .bottom-left {
+        left: 25px;
+    }
+
+    .bottom-right {
+        right: 25px;
+    }
+
+    .background-logo {
+
+        width: 95vw;
+        height: 95vw;
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <div id="boot-screen">
 
-    <!-- LOGO REAL COMO FONDO -->
-    <div class="background"></div>
+<!-- ================================
+     FONDO
+================================ -->
 
-    <!-- GRID -->
-    <div class="grid"></div>
+<div class="background-logo"></div>
 
-    <!-- SCANLINES -->
-    <div class="scanlines"></div>
+<div class="grid"></div>
 
-    <div class="boot-container">
+<div class="scanlines"></div>
 
-      <div class="system-label">
-        PARAGON // STRIKE DIVISION
-      </div>
+<div class="screen-border"></div>
 
-      <!-- EMBLEMA ORIGINAL DEL DISEÑO -->
-      <div class="emblem">
 
-        <div class="outer-ring">
+<!-- ================================
+     CARGA DEL SISTEMA
+================================ -->
 
-          <div class="inner-ring">
+<div class="boot" id="boot">
 
-            <div class="shield">
-              P
-            </div>
+    <div class="boot-top">
+        PARAGON // SECURE INITIALIZATION
+    </div>
 
-          </div>
+    <div class="boot-title">
+        SYSTEM BOOT
+    </div>
 
+    <div class="progress-container">
+
+        <div
+            class="progress"
+            id="progress">
         </div>
-
-      </div>
-
-      <div class="company-name">
-        PARAGON
-        <span>STRIKE DIVISION</span>
-      </div>
-
-      <div class="status">
-        <span id="statusText">
-          INITIALIZING SYSTEM
-        </span>
-      </div>
-
-      <div class="progress-area">
-
-        <div class="progress-info">
-
-          <span>
-            SYSTEM BOOT
-          </span>
-
-          <span id="percent">
-            0%
-          </span>
-
-        </div>
-
-        <div class="progress-bar">
-
-          <div id="progress"></div>
-
-        </div>
-
-      </div>
-
-      <button id="enterButton" disabled>
-        ENTER SYSTEM
-      </button>
-
-      <div class="security">
-        SECURE CONNECTION // AUTHORIZED PERSONNEL ONLY
-      </div>
 
     </div>
 
-  </div>
+    <div class="progress-info">
 
-  <script src="script.js"></script>
+        <span id="bootStatus">
+            INITIALIZING SYSTEM
+        </span>
+
+        <span id="percentage">
+            0%
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- ================================
+     PÁGINA PRINCIPAL
+================================ -->
+
+<main class="interface">
+
+
+    <div class="system-label">
+
+        SYSTEM //
+        <span>
+            PARAGON-STRIKE-DIVISION
+        </span>
+
+    </div>
+
+
+    <h1 class="brand">
+        PARAGON
+    </h1>
+
+
+    <div class="divider"></div>
+
+
+    <div class="subtitle">
+        STRIKE DIVISION
+    </div>
+
+
+    <div class="status">
+
+        <div class="status-light"></div>
+
+        <span>
+            SYSTEM ONLINE
+        </span>
+
+    </div>
+
+
+    <!-- BOTÓN -->
+
+    <div
+        class="enter-section"
+        id="enterSection"
+    >
+
+        <button
+            class="enter-button"
+            id="enterButton"
+            onclick="enterSystem()"
+        >
+            ENTRAR
+        </button>
+
+    </div>
+
+
+    <div class="bottom-left">
+
+        PARAGON DIVISION<br>
+        SECURE ACCESS SYSTEM
+
+    </div>
+
+
+    <div class="bottom-right">
+
+        ACCESS LEVEL // CONTROLLED<br>
+        SYSTEM STATUS // ONLINE
+
+    </div>
+
+
+</main>
+
+
+<script>
+
+
+/* =========================================
+   ELEMENTOS
+========================================= */
+
+const progress =
+    document.getElementById("progress");
+
+const percentage =
+    document.getElementById("percentage");
+
+const bootStatus =
+    document.getElementById("bootStatus");
+
+const boot =
+    document.getElementById("boot");
+
+const enterSection =
+    document.getElementById("enterSection");
+
+
+/* =========================================
+   MENSAJES DE CARGA
+========================================= */
+
+const messages = [
+
+    "INITIALIZING SYSTEM",
+
+    "LOADING SECURITY PROTOCOLS",
+
+    "VERIFYING PARAGON DATABASE",
+
+    "ESTABLISHING SECURE CONNECTION",
+
+    "LOADING INTERFACE",
+
+    "SYSTEM READY"
+
+];
+
+
+/* =========================================
+   CARGA 0 → 100
+========================================= */
+
+let value = 0;
+
+
+const loading = setInterval(() => {
+
+    value++;
+
+
+    progress.style.width =
+        value + "%";
+
+
+    percentage.textContent =
+        value + "%";
+
+
+    if (value < 20) {
+
+        bootStatus.textContent =
+            messages[0];
+
+    }
+
+    else if (value < 40) {
+
+        bootStatus.textContent =
+            messages[1];
+
+    }
+
+    else if (value < 60) {
+
+        bootStatus.textContent =
+            messages[2];
+
+    }
+
+    else if (value < 80) {
+
+        bootStatus.textContent =
+            messages[3];
+
+    }
+
+    else if (value < 100) {
+
+        bootStatus.textContent =
+            messages[4];
+
+    }
+
+    else {
+
+        bootStatus.textContent =
+            messages[5];
+
+    }
+
+
+    /* =====================================
+       AL LLEGAR AL 100 %
+    ===================================== */
+
+    if (value >= 100) {
+
+        clearInterval(loading);
+
+
+        setTimeout(() => {
+
+            boot.classList.add("hidden");
+
+
+            setTimeout(() => {
+
+                enterSection.classList.add("show");
+
+            }, 500);
+
+
+        }, 700);
+
+    }
+
+
+}, 35);
+
+
+/* =========================================
+   ENTRAR A MAIN.HTML
+========================================= */
+
+function enterSystem() {
+
+
+    /* Efecto de salida */
+
+    document.body.style.transition =
+        "opacity 0.7s ease";
+
+
+    document.body.style.opacity =
+        "0";
+
+
+    /* Abrir segunda página */
+
+    setTimeout(() => {
+
+        window.location.href =
+            "main.html";
+
+    }, 700);
+
+}
+
+</script>
 
 </body>
-
 </html>
+```
