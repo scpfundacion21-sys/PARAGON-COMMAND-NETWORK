@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>PARAGON COMMAND NETWORK</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         FONDO PRINCIPAL
+    ========================================== -->
+
+    <div class="background"></div>
+    <div class="dark-overlay"></div>
+
+    <!-- Líneas de escaneo -->
+    <div class="scanlines"></div>
+
+    <!-- =========================================
+         INTERFAZ PRINCIPAL
+    ========================================== -->
+
+    <main class="system">
+
+        <div class="top-line"></div>
+
+        <section class="boot-panel">
+
+            <div class="system-label">
+                PARAGON COMMAND NETWORK
+            </div>
+
+            <div class="status">
+                SECURE CONNECTION
+            </div>
+
+            <div class="status-online">
+                SYSTEM INITIALIZING
+            </div>
+
+            <div class="loading-container">
+
+                <div class="loading-header">
+                    <span>SYSTEM BOOT</span>
+                    <span id="percentage">0%</span>
+                </div>
+
+                <div class="loading-bar">
+                    <div id="progress"></div>
+                </div>
+
+            </div>
+
+            <div id="boot-message" class="boot-message">
+                INITIALIZING COMMAND NETWORK...
+            </div>
+
+            <!-- =========================================
+                 BOTÓN ENTRAR
+            ========================================== -->
+
+            <button id="enterButton" class="enter-button">
+                ENTRAR
+            </button>
+
+        </section>
+
+        <div class="bottom-info">
+            <span>PARAGON // COMMAND NETWORK</span>
+            <span>SYSTEM STATUS: <b>ONLINE</b></span>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
